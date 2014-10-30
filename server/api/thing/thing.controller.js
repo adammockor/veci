@@ -32,6 +32,7 @@ exports.show = function(req, res) {
 // Creates a new thing in the DB.
 exports.create = function(req, res) {
   Thing.create(req.body, function(err, thing) {
+    console.log(thing);
     if(err) { return handleError(res, err); }
     return res.json(201, thing);
   });
@@ -53,6 +54,7 @@ exports.update = function(req, res) {
 
 // Deletes a thing from the DB.
 exports.destroy = function(req, res) {
+  console.log('hej');
   Thing.findById(req.params.id, function (err, thing) {
     if(err) { return handleError(res, err); }
     if(!thing) { return res.send(404); }

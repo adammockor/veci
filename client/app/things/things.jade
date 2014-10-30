@@ -1,0 +1,31 @@
+h2 List of things
+
+.header-btn-row
+  button.btn.btn-primary(ng-click="showAddThing()") Add thing
+
+.table-responsive
+  table.table.table-bordered
+    thead
+      tr
+        th #
+        th Thing
+        th Maintained by
+        th Current possesion
+        th
+    tbody(ng-repeat="thing in things")
+      tr
+        td {{$index+1}}
+        td {{thing.name}}
+        td {{thing.maintainer.name}}
+        td {{thing.current.name}}
+        td
+          span.glyphicon.glyphicon-chevron-down
+      tr
+        td Info:
+        td(colspan="4").row
+          .info.col-sm-10 {{thing.desc}}
+          .actions.col-sm-2
+            button.btn.btn-info.btn-block(ng-click="showEditThing(thing)")
+              span.glyphicon.glyphicon-edit  Edit
+            button.btn.btn-danger.btn-block(ng-click="removeThing(thing.name,thing)")
+              span.glyphicon.glyphicon-remove  Remove
