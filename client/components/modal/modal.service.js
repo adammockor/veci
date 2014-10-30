@@ -22,9 +22,23 @@ angular.module('veciApp')
       });
     }
 
+    function openModalForm(scope) {
+      var modalScope = $rootScope.$new();
+      scope = scope || {};
+
+      angular.extend(modalScope, scope);
+
+      return $modal.open({
+        templateUrl: 'components/modal/modalform.html',
+        windowClass: 'modal-default',
+        scope: modalScope
+      });
+    }
+
     // Public API here
     return {
-
+      openModal: openModal,
+      openModalForm: openModalForm,
       /* Confirmation modals */
       confirm: {
 
@@ -73,5 +87,6 @@ angular.module('veciApp')
           };
         }
       }
+
     };
   });

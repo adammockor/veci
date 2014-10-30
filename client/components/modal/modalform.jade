@@ -1,0 +1,11 @@
+form(name="modal.formName", ng-submit="modal.formSubmitFn(modal.data)")
+  .modal-header
+    button.close(ng-if='modal.dismissable', type='button', ng-click='$dismiss()') &times;
+    h4.modal-title(ng-if='modal.title', ng-bind='modal.title')
+  .modal-body
+    p(ng-if='modal.text', ng-bind='modal.text')
+    div(ng-if='modal.html')
+      ng-include(src='modal.html')
+  .modal-footer
+    button.btn(type="button", ng-repeat='button in modal.buttons', ng-class='button.classes', ng-click='button.click($event)', ng-bind='button.text')
+    button.btn.btn-primary(type='submit', ng-bind='modal.submitText')
