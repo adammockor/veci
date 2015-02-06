@@ -5,8 +5,16 @@ var mongoose = require('mongoose'),
 
 var ThingSchema = new Schema({
   name: String,
-  info: String,
-  active: Boolean
+  desc: String,
+  active: Boolean,
+  maintainer: {
+    name: String,
+    email: String
+  },
+  current: {
+    name: String,
+    email: String
+  }
 });
 
 module.exports = mongoose.model('Thing', ThingSchema);

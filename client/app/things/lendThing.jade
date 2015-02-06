@@ -1,0 +1,3 @@
+.form-group
+  label(for="lendTo") Lend to user:
+  input.form-control(id="lendTo", type="text", ng-model="modal.data.suggestedUser", typeahead="user as user.name for user in searchUsers($viewValue)", typeahead-wait-ms="500", typeahead-min-length="2")

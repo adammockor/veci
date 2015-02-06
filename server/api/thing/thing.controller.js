@@ -29,9 +29,31 @@ exports.show = function(req, res) {
   });
 };
 
+exports.indexMy = function(req, res) {
+  Thing.find({'maintainer.email': req.params.email},function (err, things) {
+    if(err) { return handleError(res, err); }
+    return res.json(200, things);
+  });
+};
+
+exports.indexBorrowed = function(req, res) {
+  Thing.find({
+    'current.email': req.params.email, 
+    'maintainer.email': { 
+      $ne: req.params.email 
+    }
+  },function (err, things) {
+    console.log(err);
+    if(err) { return handleError(res, err); }
+    return res.json(200, things);
+  });
+};
+
+
 // Creates a new thing in the DB.
 exports.create = function(req, res) {
   Thing.create(req.body, function(err, thing) {
+    console.log(thing);
     if(err) { return handleError(res, err); }
     return res.json(201, thing);
   });
