@@ -79,7 +79,7 @@ angular.module('veciApp')
         modal: {
           dismissable: true,
           title: 'Add thing',
-          html: '/app/things/addthing.html',
+          html: 'app/things/addthing.html',
           submitText: 'Add thing',
           formName: 'addThingForm',
           formSubmitFn: $scope.addThing,
@@ -146,7 +146,7 @@ angular.module('veciApp')
         modal: {
           dismissable: true,
           title: 'Edit thing',
-          html: '/app/things/editThing.html',
+          html: 'app/things/editThing.html',
           submitText: 'Edit thing',
           formName: 'editThingForm',
           formSubmitFn: $scope.editThing,
@@ -200,7 +200,7 @@ angular.module('veciApp')
         modal: {
           dismissable: true,
           title: 'Lend thing',
-          html: '/app/things/lendThing.html',
+          html: 'app/things/lendThing.html',
           submitText: 'Lend thing',
           formName: 'lendThingForm',
           formSubmitFn: $scope.lendThing,
