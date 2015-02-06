@@ -29,6 +29,27 @@ exports.show = function(req, res) {
   });
 };
 
+exports.indexMy = function(req, res) {
+  Thing.find({'maintainer.email': req.params.email},function (err, things) {
+    if(err) { return handleError(res, err); }
+    return res.json(200, things);
+  });
+};
+
+exports.indexBorrowed = function(req, res) {
+  Thing.find({
+    'current.email': req.params.email, 
+    'maintainer.email': { 
+      $ne: req.params.email 
+    }
+  },function (err, things) {
+    console.log(err);
+    if(err) { return handleError(res, err); }
+    return res.json(200, things);
+  });
+};
+
+
 // Creates a new thing in the DB.
 exports.create = function(req, res) {
   Thing.create(req.body, function(err, thing) {
@@ -54,7 +75,6 @@ exports.update = function(req, res) {
 
 // Deletes a thing from the DB.
 exports.destroy = function(req, res) {
-  console.log('hej');
   Thing.findById(req.params.id, function (err, thing) {
     if(err) { return handleError(res, err); }
     if(!thing) { return res.send(404); }

@@ -9,12 +9,11 @@ var ThingSchema = new Schema({
   active: Boolean,
   maintainer: {
     name: String,
-    id: String
+    email: String
   },
   current: {
     name: String,
-    contact: String,
-    id: String
+    email: String
   }
 });
 

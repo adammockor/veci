@@ -1,8 +1,12 @@
 h2 List of things
 
-.header-btn-row
-  button.btn.btn-primary(ng-click="showAddThing()") Add thing
-
+.header-btn-row.clearfix
+  button.btn.btn-primary.pull-right(ng-click="showAddThing()") Add thing
+  .btn-group.toggle-mode.pull-left
+    label(class="btn btn-primary", ng-model="radioModel", ng-change="toggleMode()", btn-radio="'all'") All
+    label(class="btn btn-primary", ng-model="radioModel", ng-change="toggleMode()", btn-radio="'my'") My things
+    label(class="btn btn-primary", ng-model="radioModel", ng-change="toggleMode()", btn-radio="'borrowed'")  Borrowed things
+    
 .table-responsive
   table.table.table-bordered
     thead
@@ -12,20 +16,28 @@ h2 List of things
         th Maintained by
         th Current possesion
         th
-    tbody(ng-repeat="thing in things")
+    tbody.thing(ng-repeat="thing in things", ng-class="isOpen[$index]")
       tr
         td {{$index+1}}
         td {{thing.name}}
         td {{thing.maintainer.name}}
         td {{thing.current.name}}
         td
-          span.glyphicon.glyphicon-chevron-down
-      tr
-        td Info:
+          span.more-info-toggle.glyphicon.glyphicon-chevron-up(ng-click="toggleOpen($index)")
+      tr.more-info
+        td
         td(colspan="4").row
           .info.col-sm-10 {{thing.desc}}
           .actions.col-sm-2
-            button.btn.btn-info.btn-block(ng-click="showEditThing(thing)")
-              span.glyphicon.glyphicon-edit  Edit
-            button.btn.btn-danger.btn-block(ng-click="removeThing(thing.name,thing)")
-              span.glyphicon.glyphicon-remove  Remove
+            button.btn.btn-info.btn-block(ng-click="returnThing(thing)", ng-show='isBorrowedByMe(thing)')
+              span.glyphicon.glyphicon-edit 
+              |  Return thing
+            button.btn.btn-info.btn-block(ng-click="showLendThing(thing)", ng-show='isMy(thing)')
+              span.glyphicon.glyphicon-edit 
+              |  Lend thing
+            button.btn.btn-info.btn-block(ng-click="showEditThing(thing)", ng-show='isMy(thing) || isAdmin()')
+              span.glyphicon.glyphicon-edit 
+              |  Edit
+            button.btn.btn-danger.btn-block(ng-click="removeThing(thing.name,thing)", ng-show='isMy(thing) || isAdmin()')
+              span.glyphicon.glyphicon-remove  
+              |  Remove

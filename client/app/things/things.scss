@@ -2,5 +2,16 @@
   margin: 15px 0px;
 }
 
-.expanded-thing {
+.thing {
+  .more-info { display: none; }
+  .more-info-toggle {
+    cursor: pointer;
+    user-select: none;
+  }
+  &.is-open {
+    .more-info { display: table-row; }
+    .more-info-toggle {
+      transform: rotate(180deg);
+    }
+  }
 }

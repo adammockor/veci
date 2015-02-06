@@ -8,5 +8,5 @@ module.exports = {
     uri: 'mongodb://localhost/veci-dev'
   },
 
-  seedDB: false
+  seedDB: true
 };

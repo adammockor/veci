@@ -93,6 +93,20 @@ exports.me = function(req, res, next) {
   });
 };
 
+exports.search = function(req, res, next) {  
+  User.find({'name': 
+    { $regex: new RegExp("^" + req.params.s.toLowerCase(), "i") }
+    }, function(err, users) {
+      var fUsers = users.map(function(user) {
+        return user.profile;
+      });
+      
+      res.status(200).json(fUsers);
+  });
+  
+  
+};
+
 /**
  * Authentication callback
  */

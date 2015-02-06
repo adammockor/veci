@@ -1,11 +1,10 @@
 .form-group
   label(for="thingName") Name:
   input(type="text", class="form-control", id="thingName", placeholder="Enter name", ng-model="modal.data.name")
-
 .form-group
   label(for="thingDesc") Description:
   textarea(class="form-control", rows="3", id="thingDesc", ng-model="modal.data.desc")
-
+    
 .form-group(ng-show="isAdmin()")
   label(for="maintainer") Maintainer:
   input.form-control(id="maintainer", type="text", ng-model="modal.data.maintainer", typeahead="user as user.name for user in searchUsers($viewValue)", typeahead-wait-ms="500", typeahead-min-length="2")
@@ -13,3 +12,4 @@
 .form-group(ng-show="isAdmin()")
   label(for="currentUser") Current user:
   input.form-control(id="currentUser", type="text", ng-model="modal.data.current", typeahead="user as user.name for user in searchUsers($viewValue)", typeahead-wait-ms="500", typeahead-min-length="2")
+
